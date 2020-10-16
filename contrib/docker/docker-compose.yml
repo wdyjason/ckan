@@ -3,9 +3,11 @@
 version: "3"
 
 volumes:
-  ckan_config:
-  ckan_home:
-  ckan_storage:
+  # ****step1******* #
+  # kan_config:
+  # ckan_home:
+  # ckan_storage:
+  # ****end******* #
   pg_data:
   solr_data:
 
@@ -36,11 +38,19 @@ services:
       - CKAN_MAX_UPLOAD_SIZE_MB=${CKAN_MAX_UPLOAD_SIZE_MB}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - DS_RO_PASS=${DATASTORE_READONLY_PASSWORD}
-
+    # ****step1******* #
+    # volumes:
+    #   - ckan_config:/etc/ckan
+    #   - ckan_home:/usr/lib/ckan
+    #   - ckan_storage:/var/lib/ckan
+    # ****end******* #
+    
+    # ****step2******* #
     volumes:
-      - ckan_config:/etc/ckan
-      - ckan_home:/usr/lib/ckan
-      - ckan_storage:/var/lib/ckan
+      - ${CKAN_DEV_LOCALTION}/ckan_config:/etc/ckan
+      - ${CKAN_DEV_LOCALTION}/ckan_home:/usr/lib/ckan
+      - ${CKAN_DEV_LOCALTION}/ckan_storage:/var/lib/ckan
+    # ****end******* #
 
   datapusher:
     container_name: datapusher

@@ -44,7 +44,7 @@ services:
     #   - ckan_home:/usr/lib/ckan
     #   - ckan_storage:/var/lib/ckan
     # ****end******* #
-    
+
     # ****step2******* #
     volumes:
       - ${CKAN_DEV_LOCALTION}/ckan_config:/etc/ckan
@@ -73,6 +73,8 @@ services:
       - pg_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "ckan"]
+    ports:
+    - "5432:5432"
 
   solr:
     container_name: solr

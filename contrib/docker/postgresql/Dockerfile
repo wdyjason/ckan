@@ -11,5 +11,6 @@ ENV POSTGRES_USER ckan
 ARG POSTGRES_PASSWORD
 ARG DS_RO_PASS
 
+EXPOSE 5432
 # Include datastore setup scripts
 ADD ./contrib/docker/postgresql/docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
